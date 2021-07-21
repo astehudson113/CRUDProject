@@ -1,0 +1,59 @@
+<htmL>
+{%extends 'EmpApp/base.html' %}
+{% block content %}<br>  
+<div class="row">
+<div class="col-sm-5" >
+ <h4 class="text-center  alert alert-info" style="background-color: rgb(110, 185, 214);"><font size="4" color="#09366E" face="Copperplate Gothic Light"><b>ADD EMPLOYEE REGISTRATION DETAILS</b></font></h4></div>
+  <form  method="POST">
+       {% csrf_token %}
+        {{form.as_p}}
+  <input type="submit" class="btn btn-lg btn-success" value="ADD">
+  </form>
+ </div>   
+</div>
+</div>
+<div class="col-sm-12 offset" style="border:black solid;size:2px;">
+  <h4 class="text-center alert alert-info" style="background-color: rgb(243, 200, 165);"><center><font size="6" color="#09366E" face="Copperplate Gothic Light"><b>SHOW THE EMPLOYEE's REGISTER DETAILS</b></font></center></h4>  
+  <form method="POST" action="/search/">
+    {% csrf_token %}
+  <input name="name">
+  <button type="submit">Search</button> 
+  </form>
+    {% if emp %}
+    <table class="table table-hover "><br>
+     <thead>
+         <tr>
+            <th scope="col" style="padding:10px;">ID</th> 
+            <th scope="col" style="padding:10px;">NAME</th> 
+            <th scope="col" style="padding:10px;">Email</th> 
+            <th scope="col" style="padding:10px;">PhoneNo</th> 
+            <th scope="col" style="padding:10px;">Experience&nbsp;</th>
+            <th scope="col" style="padding:10px;">&nbsp;&nbsp;Date of Birth</th>
+            <th scope="col" style="padding:10px;">Sallary</th>
+            <th scope="col" style="padding:10px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#Action</th>
+        </tr>
+     </thead> 
+  <tbody>
+    {% for x in emp %}  
+     <tr>
+       <th scope="row">{{x.eid}}</th>
+        <td>{{x.ename}}</td> 
+        <td>{{x.email}}</td> 
+        <td>{{x.ephno}}</td>
+        <td>&nbsp;&nbsp;&nbsp;&nbsp;{{x.eexp}}</td>
+        <td>{{x.edob}}</td>
+        <td>{{x.esal}}</td>
+        <td>
+          <a href= "/update/{{x.id}}" class="btn btn-lg btn-warning">UPDATE</a>
+        </td>
+        <td>
+          <a href="/delete/{{x.id}}" class="btn btn-lg btn-danger">DELETE</a>
+        </td>
+     </tr>
+    {% endfor %}
+  </tbody> 
+  </table>
+  {% endif %}
+   </div>
+  {% endblock %}
+</htmL>

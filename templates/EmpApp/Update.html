@@ -1,0 +1,16 @@
+<html>
+{%extends 'EmpApp/base.html' %}
+{% block content %}
+<div class="row">
+<div class="col-sm-5 offset-3"> 
+<h4 class="alert alert-info">UPDATE STUDENT INFORMATION</h4>
+<form method="POST">
+  {% csrf_token %}
+   {{form.as_p}}
+<input type="submit" class="btn btn-lg btn-success" value="UPDATE">
+<a href="http://127.0.0.1:8000/insert/">UPDATE</a>
+</form>
+</div>
+</div> 
+{% endblock content %} 
+</html>
